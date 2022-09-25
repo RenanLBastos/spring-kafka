@@ -10,11 +10,7 @@ import java.io.IOException;
 
 
 @SpringBootApplication
-@EnableKafka
 public class KafkaApplication {
-
-	@Value("classpath:path/to/file/in/classpath")
-	Resource resourceFile;
 
 	public static void main(String[] args) throws IOException {
 
