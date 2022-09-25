@@ -5,9 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.core.io.Resource;
 
 @Slf4j
 @Service
@@ -16,13 +15,20 @@ public class TopicProducer {
 
     @Value("${topic.name.producer}")
     private String topicName;
-    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    KafkaTemplate<String, Object> multiTypeKafkaTemplate;
+//    private final KafkaTemplate<Object, PlantDto> plantDtoKafkaTemplate;
+//
+//    private final KafkaTemplate<Object, String> stringKafkaTemplate;
 
 
 
-    public void send(String message){
-        log.info("Payload enviado: {}", message);
-        kafkaTemplate.send(topicName, message);
+    public void send(UserDto user, PlantDto plantDto, String message){
+        log.info("Payload enviado: {}", user);
+        this.multiTypeKafkaTemplate.send(topicName, user);
+        this.multiTypeKafkaTemplate.send(topicName, plantDto);
+        this.multiTypeKafkaTemplate.send(topicName, message);
     }
 
 }

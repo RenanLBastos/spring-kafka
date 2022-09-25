@@ -5,24 +5,30 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@KafkaListener(groupId = "${spring.kafka.consumer.group-id}", topics = "${topic.name.consumer}")
 public class TopicListener {
 
-    @Value("${topic.name.consumer")
-    private String topicName;
+    @KafkaHandler
+    public void handleGreeting(UserDto userDto) {
+        System.out.println("User received: " + userDto);
+    }
 
-    @KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
-    public void consume(ConsumerRecord<String, String> payload){log.info("Tópico: {}", topicName);
-        log.info("key: {}", payload.key());
-        log.info("Headers: {}", payload.headers());
-        log.info("Partion: {}", payload.partition());
-        log.info("Order: {}", payload.value());
+    @KafkaHandler
+    public void handleF(PlantDto plantDto) {
+        System.out.println("Plant received: " + plantDto);
+    }
 
+    @KafkaHandler(isDefault = true)
+    public void unknown(Object object) {
+        System.out.println("Unkown type received: " + object);
     }
 
 }

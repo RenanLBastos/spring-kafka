@@ -21,16 +21,16 @@ bin/kafka-topics.sh --create --topic {nome-do-topico} --bootstrap-server localho
 ==================================================================================================================================================
 Ver informações do tópico
 
-bin/kafka-topics.sh --describe --topic {nome-do-topico} --bootstrap-server localhost:9092
+bin/kafka-topics.sh --describe --topic topico.comando.teste --bootstrap-server localhost:9092
 ==================================================================================================================================================
 Escrever mensagens no tópico
 
-bin/kafka-console-producer.sh --topic {nome-do-topico} --bootstrap-server localhost:9092
+bin/kafka-console-producer.sh --topic topico.comando.teste --bootstrap-server localhost:9092
 This is my first event
 This is my second event
 You can stop the producer client with Ctrl-C at any time.
 ==================================================================================================================================================
 Lendo mensagens dp tópico
 
-bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+bin/kafka-console-consumer.sh --topic topico.comando.teste --from-beginning --bootstrap-server localhost:9092
 You can stop the consumer client with Ctrl-C at any time.
