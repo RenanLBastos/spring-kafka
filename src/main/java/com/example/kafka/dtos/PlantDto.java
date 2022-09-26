@@ -1,4 +1,4 @@
-package com.example.kafka.util;
+package com.example.kafka.dtos;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.example.kafka.config;
 
-import com.example.kafka.util.PlantDto;
-import com.example.kafka.util.UserDto;
+import com.example.kafka.dtos.PlantDto;
+import com.example.kafka.dtos.UserDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
